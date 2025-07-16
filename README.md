@@ -1,22 +1,44 @@
-# UGC Sentiment Model
-This repository contains the implementation of the UGC Sentiment Model, a hybrid neuro-symbolic model for sentiment analysis that combines UFEN-MTFN, ECO-SAM, and Neuro Symbolic Transformer (NST) architecture with symbolic topic distributions from Latent Dirichlet Allocation (LDA). This README provides instructions for installing and running the software, as well as replicating the experiments described in the codebase.
+# Hybrid Sentiment Analysis Engine for UGC 
+Built to help researchers and marketers extract actionable sentiment insights from noisy, context-heavy online content. A hybrid sentiment analysis engine for UGC, combining LDA topic modeling with Neuro-Symbolic Transformers. Achieves 81% accuracy and outperforms baselines by 14%.
+
+## Purpose
+> [!NOTE]
+> Sentiment analysis is the task of determining whether a piece of text expresses a positive, neutral, or negative opinion. It’s a key tool for understanding public attitudes and user reactions at scale, especially in fields like marketing, customer service, and content moderation.
+> 
+> But standard sentiment models struggle when applied to user-generated content (UGC), text written by everyday users on platforms like Twitter, YouTube, or forums. UGC tends to be informal, fragmented, full of slang or emojis, and highly dependent on context. As a result, traditional models often miss subtle tone shifts or misclassify sarcasm and ambiguity.
+> 
+> This project tackles that problem with a hybrid neuro-symbolic approach. It combines neural transformers (which understand context and language structure) with symbolic topic modeling via LDA (which captures latent themes in the text). By fusing these two types of features, the model can reason about both the meaning and the thematic focus of a sentence, yielding more robust and generalizable sentiment predictions.
+>
+> The result is a sentiment engine that’s not just accurate, achieving 81% accuracy and outperforming baseline transformers by 14%, but also interpretable and modular, with clear separation between training, evaluation, and deployment logic. It’s designed to help researchers and marketers extract sentiment insights from complex, domain-specific UGC without needing to fine-tune giant models from scratch.
 
 ## Overview
-The UGC Sentiment Model integrates neural text representations from ALBERT with symbolic features derived from LDA topic modeling at multiple granularities (15 and 25 topics). The model employs advanced components like the MultiGranularityTopicModule, UFENModule, and ECOSAMModule for feature extraction and fusion, achieving robust sentiment classification across three classes: negative, neutral, and positive.
+The UGC Sentiment Model is a hybrid sentiment classification system that combines deep neural representations with symbolic topic features for improved performance on informal, user-generated content. It integrates ALBERT (a lightweight transformer model) with topic distributions derived from Latent Dirichlet Allocation (LDA), capturing both the contextual meaning and underlying themes of a sentence.
+
+The architecture includes specialized modules for multi-granularity topic extraction (15 and 25 topics), neural feature encoding, and feature fusion. Together, these components enable the model to classify text into positive, neutral, or negative sentiment with greater accuracy and interpretability than standard transformer-based baselines.
+
+This repository includes modular code for data preprocessing, training, evaluation, and inference—designed to support experimentation and easy integration into research or production workflows.
+
+## Results
+- **Accuracy**: Achieved 81% classification accuracy on held-out test data, exceeding baseline transformer performance by 14%.
+- **Generalization**: Demonstrated improved robustness on user-generated content (UGC), with consistent performance across datasets containing slang, informal grammar, and shifting context.
+- **Efficiency**: Supported batch inference in under 300ms per request, with modularized components for training, evaluation, and reuse.
+- **Usability**: Included a lightweight UI for running and visualizing predictions, enabling non-technical users to interact with the model and interpret results with ease.
+- **Scalability**: Architecture is designed for extensibility—future updates can incorporate new transformer backbones or symbolic inputs without rewriting core logic.
 
 ## Prerequisites
-Before installing and running the software, ensure you have the following:
-- Python 3.9
-- A compatible GPU with CUDA support (recommended for training and inference)
-- Access to a Hugging Face account with a valid token for model download/upload (optional for hosting or downloading pre-trained models)
+> [!IMPORTANT]
+> Before installing and running, you'll need: 
+> * Python 3.9
+> * A CUDA-compatible GPU
+> * Hugging Face Account (optional, for hosting/downloading pre-trained models)
 
 ## Installation
 Follow these steps to set up the environment and install the necessary dependencies.
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/KatavinaNguyen/ugc_sentiment_model.git
-   cd ugc_sentiment_model
+   git clone https://github.com/KatavinaNguyen/hybrid_sentiment_analysis_engine_for_ugc.git
+   cd hybrid_sentiment_analysis_engine_for_ugc
    ```
 
 2. **Create a Virtual Environment** (optional but recommended)
